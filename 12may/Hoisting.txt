@@ -1,0 +1,180 @@
+Hoisting
+
+variable can be declared after it has been used.
+
+HTML.H
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="demo"></p>
+
+<script>
+x = 5;
+elem = document.getElementById("demo"); 
+elem.innerHTML = x;          
+
+var x; 
+</script>
+
+Output : 5
+
+variable can be used before it has been declared
+
+<script>
+var x; 
+x = 5; 
+
+elem = document.getElementById("demo"); 
+elem.innerHTML = x;           
+</script>
+</body>
+</html> 
+
+Output : 5
+
+Using let & const
+
+SyntaxError: Missing initializer in const declaration
+ReferenceError: Cannot access 'x' before initialization
+
+TDZ Means Temporal Dead Zone
+why??
+using functions before Actual declaration
+
+
+
+THIS KEYWORD
+
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<p id="demo">abc</p>
+<p id="demo1">abc</p>
+<p id="demo2">abc</p>
+
+<script>
+
+car();
+function car()
+{
+    
+    var person ={
+   firstName :"jehan",
+ 	lastName : "nath",
+   
+   fullName : function() { 
+   		console.log("entered");
+        let fullN = this.firstName + this.lastName;
+        console.log(fullN);
+        
+    };
+    
+    document.getElementById('demo').textContent = person.firstName;
+     document.getElementById('demo1').textContent = person.lastName;
+     
+     document.getElementById('demo2').textContent = person.fullName();
+}
+    
+</script>
+
+</body>
+</html>
+
+
+<script>
+// Create an object:
+var person = {
+  firstName: "Jehan",
+  lastName : "Nath",
+  fullName : function() {
+    return this.firstName + " " + this.lastName;
+	
+	return firstName + " " + lastName // Not Running variable is not Defind
+  }
+};
+person
+// Display data from the object:
+document.getElementById("demo").innerHTML = person.fullName();
+</script>
+
+OUTPUT : Jehan Nath
+
+OWN PROBLEM
+
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<p id="demo">abc</p>
+<p id="demo1">abc</p>
+<p id="demo2">abc</p>
+<p id="demo3">abc</p>
+
+<script>
+
+var student = {
+ id : 75,
+ name : "jehan",
+ address : "pvp",
+ age : 10, 
+ 
+  details : function (){
+  var x;
+  if(this.age > 18)
+  {
+  	x = "major";
+    }
+    else{
+   x = "minor";
+    }
+   return x;
+
+ }
+ };
+ 
+ document.getElementById('demo').textContent = student.id;
+ 
+ 
+  document.getElementById('demo1').textContent = student.name;
+ 
+ document.getElementById('demo2').textContent = student.address;
+ 
+ 
+ document.getElementById('demo3').textContent = student.details();
+
+</script>
+
+</body>
+</html>
+
+
+Scoping
+
+
+
+<script>
+myFunction();
+function myFunction() {
+  var carName = "Volvo";
+  
+  
+  car();
+  function car(){
+  	 carName = "BMW";
+    document.querySelector('#demo2').textContent = typeof carName+" "+ carName;
+  }
+  
+  document.querySelector('#demo').textContent = typeof carName+" "+ carName;
+  
+  
+  
+}
+//document.getElementById("demo2").innerHTML = typeof carName;
+
+
+</script>
